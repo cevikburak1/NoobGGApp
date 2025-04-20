@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NoobGGApp.Domain.Common.Entities
+namespace NoobGGApp.Domain.ValueObjects
 {
-    public interface IEntity<TKey> where TKey : struct
+    public record class Age
     {
-        TKey Id { get; set; }
-      
+        public int Value { get; set; }
     }
 }

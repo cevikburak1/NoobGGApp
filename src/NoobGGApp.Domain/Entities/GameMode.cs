@@ -14,5 +14,8 @@ namespace NoobGGApp.Domain.Entities
         public string ImageUrl { get; set; }
         public Guid GameId { get; set; }
         public Game Game { get; set; }
+        public override string CreatedByUserId { get; set; } = "Burak";
+        public override DateTimeOffset CreatedOn { get; set; } = DateTimeOffset.UtcNow;
+
     }
 }
