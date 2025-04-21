@@ -1,4 +1,5 @@
 ﻿using NoobGGApp.Domain.Common.Entities;
+using NoobGGApp.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;

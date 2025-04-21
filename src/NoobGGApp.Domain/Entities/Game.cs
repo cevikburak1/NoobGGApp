@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TSID.Creator.NET;
 
 namespace NoobGGApp.Domain.Entities
 {
-    public sealed class Game:EntityBase<Guid>
+    public sealed class Game:EntityBase<long>
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -16,17 +17,7 @@ namespace NoobGGApp.Domain.Entities
 
         public Game()
         {
-            Email userEmail = new Email();
-            string email = userEmail;
-
-            Customer customer1 = new Customer("cevikburak1@hotmail.com");
-            customer1.Adress.City = "Istanbul";
-
-            Customer customer2 = new Customer("cevikburak1@hotmail.com");
-            if (customer1.Adress.City == customer2.Adress.City)
-            {
-
-            }
+           Id =TsidCreator.GetTsid().ToLong();
         }
     }
 }
