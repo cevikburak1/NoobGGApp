@@ -8,15 +8,10 @@ using System.Threading.Tasks;
 
 namespace NoobGGApp.Domain.Entities
 {
-    public sealed class Customer:EntityBase<long>
+    public sealed class Customer:EntityBase<CustomerId>
     {
-        public Customer(Email email)
-        {
-             Email = email;
-        }
-
         public FullName FullName { get; set; }
         public Email Email { get; set; }
-        public Adress Adress { get; set; }
+        public Adress Address { get; set; } 
     }
 }
