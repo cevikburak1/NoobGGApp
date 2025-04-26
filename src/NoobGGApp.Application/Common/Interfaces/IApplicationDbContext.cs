@@ -11,6 +11,7 @@ namespace NoobGGApp.Application.Common.Interfaces
     public interface IApplicationDbContext
     {
         DbSet<GameRegion> GameRegions { get; set; }
+        DbSet<Game> Games { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         int SaveChanges();
     }
