@@ -23,10 +23,10 @@ namespace NoobGGApp.Application.Features.GameRegions.Queries.GetById
            var gameRegion= await _applicationDbContext
                 .GameRegions
                 .AsNoTracking()
-                .Include(x=>x.Game)
+                .Select(x => new GameRegionGetByIdDto(x.Id, x.Name, x.Code, x.GameId, x.Game.Name))
                 .FirstOrDefaultAsync(x=>x.Id==request.Id,cancellationToken);
 
-            return GameRegionGetByIdDto.Create(gameRegion!);
+            return gameRegion;
         }
     }
    

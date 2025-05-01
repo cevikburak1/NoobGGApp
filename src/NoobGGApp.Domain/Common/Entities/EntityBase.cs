@@ -16,9 +16,9 @@ namespace NoobGGApp.Domain.Common.Entities
         public virtual DateTimeOffset? ModifiedOn { get; set; }
 
         private readonly List<IDomainEvent> _domainEvents = [];
-        public IReadOnlyList<IDomainEvent> GetDomainEvents => _domainEvents.AsReadOnly();
+        public IReadOnlyList<IDomainEvent> GetDomainEvents() => _domainEvents.AsReadOnly();
         public void RaiseDomainEvent(IDomainEvent domainEvent) => _domainEvents.Add(domainEvent);
-        protected void ClearDomainEvent() => _domainEvents.Clear();
+        public void ClearDomainEvents() => _domainEvents.Clear();
         
     }
 }
