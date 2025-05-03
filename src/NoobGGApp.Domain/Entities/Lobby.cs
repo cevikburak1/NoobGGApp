@@ -14,6 +14,7 @@ namespace NoobGGApp.Domain.Entities
         public long GameModeId { get; private set; }
         public long GameRegionId { get; private set; }
         public long CreatorId { get; private set; }
+        public byte[] RowVersion { get; private set; }
         public static Lobby Create(long gameId, long gameModeId, long gameRegionId, long customerId)
         {
             var lobby = new Lobby()
