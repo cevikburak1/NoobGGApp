@@ -1,8 +1,10 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NoobGGApp.Application.Common.Interfaces;
 using NoobGGApp.Domain.Common.Entities;
 using NoobGGApp.Domain.Entities;
+using NoobGGApp.Domain.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace NoobGGApp.Infrastructure.Persistence.EntityFramework.Context
 {
-    public class ApplicationDbContext : DbContext, IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, long, ApplicationUserClaim, ApplicationUserRole, ApplicationUserLogin, ApplicationRoleClaim, ApplicationUserToken>, IApplicationDbContext
     {
         private readonly IPublisher _publisher;
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IPublisher publisher) : base(options)
@@ -26,6 +28,11 @@ namespace NoobGGApp.Infrastructure.Persistence.EntityFramework.Context
             var result = await base.SaveChangesAsync(cancellationToken);
             await DispatchDomainEventAsync(cancellationToken);
             return result;
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         }
         private async Task DispatchDomainEventAsync(CancellationToken cancellationToken)
         {

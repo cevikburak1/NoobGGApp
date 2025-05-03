@@ -1,0 +1,6 @@
+@NoobGG.WebApi_HostAddress = http://localhost:5222
+
+GET {{NoobGG.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

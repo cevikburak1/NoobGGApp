@@ -14,10 +14,6 @@ namespace NoobGGApp.Domain.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
-
-        public Game()
-        {
-           Id =TsidCreator.GetTsid().ToLong();
-        }
+        public ICollection<GameRegion> GameRegions { get; set; } = [];
     }
 }
