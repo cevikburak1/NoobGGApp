@@ -39,17 +39,17 @@ namespace NoobGGApp.Infrastructure.Persistence.EntityFramework.Configurations
             builder.Property(u => u.PhoneNumber).HasMaxLength(20);
 
             //FullName
-            builder.Property(u => u.FullName).IsRequired();
-            builder.Property(u => u.FullName).HasMaxLength(100);
+            //builder.Property(u => u.FullName).IsRequired();
+            //builder.Property(u => u.FullName).HasMaxLength(100);
 
 
-            // //FirstName
-            // builder.Property(u => u.FirstName).IsRequired();
-            // builder.Property(u => u.FirstName).HasMaxLength(100);
+            //FirstName
+            builder.Property(u => u.FirstName).IsRequired();
+            builder.Property(u => u.FirstName).HasMaxLength(100);
 
-            // //LastName
-            // builder.Property(u => u.LastName).IsRequired();
-            // builder.Property(u => u.LastName).HasMaxLength(100);
+            //LastName
+            builder.Property(u => u.LastName).IsRequired();
+            builder.Property(u => u.LastName).HasMaxLength(100);
 
 
             // The relationships between User and other entity types
