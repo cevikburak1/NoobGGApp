@@ -15,10 +15,13 @@ namespace NoobGGApp.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"),b=>b.MigrationsHistoryTable("__ef_migrations_history")).UseSnakeCaseNamingConvention());
+            services
+           .AddDbContext<ApplicationDbContext>(options =>
+               options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsHistoryTable("__ef_migrations_history"))
+               .UseSnakeCaseNamingConvention());
 
-            services.AddScoped<IApplicationDbContext>();
+            services
+                .AddScoped<IApplicationDbContext, ApplicationDbContext>();
             return services;
         }
     }
