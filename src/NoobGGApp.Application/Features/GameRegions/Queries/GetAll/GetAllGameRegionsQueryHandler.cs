@@ -22,7 +22,6 @@ namespace NoobGGApp.Application.Features.GameRegions.Queries.GetAll
                  .GameRegions
                  .AsQueryable();
 
-              if (request.GameId.HasValue)
                  query = query.Where(x => x.GameId == request.GameId);
               
               if (!string.IsNullOrEmpty(request.Name))

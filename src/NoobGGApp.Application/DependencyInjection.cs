@@ -14,7 +14,7 @@ namespace NoobGGApp.Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddMediatR(cfg => { cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValdiationBehavior<,>));});
+            services.AddMediatR(cfg => { cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValdiationBehavior<,>)); cfg.AddBehavior(typeof(CachingBehavior<,>));});
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
 
