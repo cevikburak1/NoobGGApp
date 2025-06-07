@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace NoobGGApp.Domain.Common.Entities;
 
-namespace NoobGGApp.Domain.Common.Entities
+public interface IModifiedByEntity
 {
-    public interface IModifiedByEntity
-    {
-        string? ModifiedByUserId { get; set; }
-        DateTimeOffset? ModifiedOn { get; set; }
-    }
+    string? ModifiedByUserId { get; set; }
+    DateTimeOffset? ModifiedOn { get; set; }
 }
