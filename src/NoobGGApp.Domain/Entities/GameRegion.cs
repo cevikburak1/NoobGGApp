@@ -13,20 +13,23 @@ namespace NoobGGApp.Domain.Entities
     {
         public string Name { get; private set; }
         public string Code { get; private set; }
+
         public long GameId { get; private set; }
         public Game Game { get; private set; }
+
         public static GameRegion Create(string name, string code, long gameId)
         {
-             var gameRegion =  new GameRegion
+            var gameRegion = new GameRegion
             {
                 Id = TsidCreator.GetTsid().ToLong(),
                 Name = name,
                 Code = code,
-                GameId = gameId
+                GameId = gameId,
             };
-            gameRegion.RaiseDomainEvent(new GameRegionCreatedDomainEvent(gameRegion.Id));
-            return gameRegion;    
-        }
 
+            gameRegion.RaiseDomainEvent(new GameRegionCreatedDomainEvent(gameRegion.Id));
+
+            return gameRegion;
+        }
     }
 }

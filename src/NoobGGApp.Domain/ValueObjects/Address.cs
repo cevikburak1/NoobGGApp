@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace NoobGGApp.Domain.ValueObjects
 {
-    public sealed record  Adress
+    public sealed record Address
     {
-        public Adress(string street, string city, string country, string zipCode, string state, string apartment)
+        public Address(string street, string city, string country, string zipCode, string state, string apartment)
         {
             if (string.IsNullOrEmpty(street))
                 throw new ArgumentException("Street cannot be null or empty");
