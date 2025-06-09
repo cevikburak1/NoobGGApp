@@ -1,29 +1,24 @@
-﻿using System.Reflection;
-using FluentValidation;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using NoobGGApp.Application.Common.PipelineBehaviors;
-
-namespace NoobGGApp.Application;
-
-public static class DependencyInjection
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using FluentValidation;
+namespace NoobGGApp.Application
 {
-    public static IServiceCollection AddApplication(this IServiceCollection services)
+    public static class DependencyInjection
     {
-        services.AddMediatR(config =>
+        public static IServiceCollection AddApplication(this IServiceCollection services)
         {
+            services.AddMediatR(cfg => { cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValdiationBehavior<,>)); cfg.AddBehavior(typeof(CachingBehavior<,>));});
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
-            config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
 
-            config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValdiationBehavior<,>));
-
-            config.AddBehavior(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
-
-            // config.AddOpenBehavior(typeof(ValidationBehavior<,>));
-        });
-
-        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-
-        return services;
+            return services;
+        }
     }
 }

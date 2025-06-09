@@ -2,9 +2,9 @@ using NoobGG.WebApi;
 using NoobGGApp.Application;
 using NoobGGApp.Application.Common.Interfaces;
 using NoobGGApp.Infrastructure;
-using NoobGGApp.WebApi;
-using NoobGGApp.WebApi.Services;
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
 
 // Add services to the container.
 
@@ -13,10 +13,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
-
-builder.Services.AddScoped<ICurrentUserService, CurrentUserManager>();
+builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 

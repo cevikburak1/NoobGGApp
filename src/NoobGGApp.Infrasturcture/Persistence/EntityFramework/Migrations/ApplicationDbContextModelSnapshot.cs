@@ -3,7 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NoobGGApp.Infrastructure.Persistence.EntityFramework.Contexts;
+using NoobGGApp.Infrastructure.Persistence.EntityFramework.Context;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -76,10 +76,11 @@ namespace NoobGGApp.Infrastructure.Persistence.EntityFramework.Migrations
                     b.Property<DateTimeOffset>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTimeOffset(new DateTime(2025, 6, 9, 14, 40, 58, 612, DateTimeKind.Unspecified).AddTicks(883), new TimeSpan(0, 0, 0, 0, 0)))
+                        .HasDefaultValue(new DateTimeOffset(new DateTime(2025, 5, 11, 13, 19, 22, 494, DateTimeKind.Unspecified).AddTicks(926), new TimeSpan(0, 0, 0, 0, 0)))
                         .HasColumnName("created_on");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasMaxLength(5000)
                         .HasColumnType("character varying(5000)")
                         .HasColumnName("description");
@@ -111,124 +112,6 @@ namespace NoobGGApp.Infrastructure.Persistence.EntityFramework.Migrations
                     b.ToTable("games", (string)null);
                 });
 
-            modelBuilder.Entity("NoobGGApp.Domain.Entities.GameMode", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("created_by_user_id");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_on");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("description");
-
-                    b.Property<long>("GameId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("game_id");
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("image_url");
-
-                    b.Property<int>("MaxTeamSize")
-                        .HasColumnType("integer")
-                        .HasColumnName("max_team_size");
-
-                    b.Property<int>("MinTeamSize")
-                        .HasColumnType("integer")
-                        .HasColumnName("min_team_size");
-
-                    b.Property<string>("ModifiedByUserId")
-                        .HasColumnType("text")
-                        .HasColumnName("modified_by_user_id");
-
-                    b.Property<DateTimeOffset?>("ModifiedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("modified_on");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("name");
-
-                    b.HasKey("Id")
-                        .HasName("pk_game_mode");
-
-                    b.HasIndex("GameId")
-                        .HasDatabaseName("ix_game_mode_game_id");
-
-                    b.ToTable("game_mode", (string)null);
-                });
-
-            modelBuilder.Entity("NoobGGApp.Domain.Entities.GameRank", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("created_by_user_id");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_on");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text")
-                        .HasColumnName("description");
-
-                    b.Property<long>("GameId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("game_id");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("text")
-                        .HasColumnName("image_url");
-
-                    b.Property<string>("ModifiedByUserId")
-                        .HasColumnType("text")
-                        .HasColumnName("modified_by_user_id");
-
-                    b.Property<DateTimeOffset?>("ModifiedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("modified_on");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("name");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("integer")
-                        .HasColumnName("order");
-
-                    b.HasKey("Id")
-                        .HasName("pk_game_rank");
-
-                    b.HasIndex("GameId")
-                        .HasDatabaseName("ix_game_rank_game_id");
-
-                    b.ToTable("game_rank", (string)null);
-                });
-
             modelBuilder.Entity("NoobGGApp.Domain.Entities.GameRegion", b =>
                 {
                     b.Property<long>("Id")
@@ -252,7 +135,7 @@ namespace NoobGGApp.Infrastructure.Persistence.EntityFramework.Migrations
                     b.Property<DateTimeOffset>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")
-                        .HasDefaultValue(new DateTimeOffset(new DateTime(2025, 6, 9, 14, 40, 58, 612, DateTimeKind.Unspecified).AddTicks(2972), new TimeSpan(0, 0, 0, 0, 0)))
+                        .HasDefaultValue(new DateTimeOffset(new DateTime(2025, 5, 11, 13, 19, 22, 494, DateTimeKind.Unspecified).AddTicks(2787), new TimeSpan(0, 0, 0, 0, 0)))
                         .HasColumnName("created_on");
 
                     b.Property<long>("GameId")
@@ -281,48 +164,6 @@ namespace NoobGGApp.Infrastructure.Persistence.EntityFramework.Migrations
                         .HasDatabaseName("ix_game_regions_game_id");
 
                     b.ToTable("game_regions", (string)null);
-                });
-
-            modelBuilder.Entity("NoobGGApp.Domain.Entities.Language", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("code");
-
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("created_by_user_id");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_on");
-
-                    b.Property<string>("ModifiedByUserId")
-                        .HasColumnType("text")
-                        .HasColumnName("modified_by_user_id");
-
-                    b.Property<DateTimeOffset?>("ModifiedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("modified_on");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("name");
-
-                    b.HasKey("Id")
-                        .HasName("pk_language");
-
-                    b.ToTable("language", (string)null);
                 });
 
             modelBuilder.Entity("NoobGGApp.Domain.Entities.Lobby", b =>
@@ -359,26 +200,6 @@ namespace NoobGGApp.Infrastructure.Persistence.EntityFramework.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("game_region_id");
 
-                    b.Property<bool>("IsMicrophoneRequired")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_microphone_required");
-
-                    b.Property<long?>("MaxGameRankId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("max_game_rank_id");
-
-                    b.Property<int>("MaxTeamSize")
-                        .HasColumnType("integer")
-                        .HasColumnName("max_team_size");
-
-                    b.Property<long?>("MinGameRankId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("min_game_rank_id");
-
-                    b.Property<int>("MinTeamSize")
-                        .HasColumnType("integer")
-                        .HasColumnName("min_team_size");
-
                     b.Property<string>("ModifiedByUserId")
                         .HasColumnType("text")
                         .HasColumnName("modified_by_user_id");
@@ -386,14 +207,6 @@ namespace NoobGGApp.Infrastructure.Persistence.EntityFramework.Migrations
                     b.Property<DateTimeOffset?>("ModifiedOn")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("modified_on");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("text")
-                        .HasColumnName("note");
-
-                    b.Property<long>("OwnerId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("owner_id");
 
                     b.Property<byte[]>("RowVersion")
                         .IsConcurrencyToken()
@@ -402,186 +215,10 @@ namespace NoobGGApp.Infrastructure.Persistence.EntityFramework.Migrations
                         .HasColumnType("bytea")
                         .HasColumnName("row_version");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("integer")
-                        .HasColumnName("type");
-
                     b.HasKey("Id")
                         .HasName("pk_lobby");
 
-                    b.HasIndex("CreatorId")
-                        .HasDatabaseName("ix_lobby_creator_id");
-
-                    b.HasIndex("GameId")
-                        .HasDatabaseName("ix_lobby_game_id");
-
-                    b.HasIndex("GameModeId")
-                        .HasDatabaseName("ix_lobby_game_mode_id");
-
-                    b.HasIndex("GameRegionId")
-                        .HasDatabaseName("ix_lobby_game_region_id");
-
-                    b.HasIndex("MaxGameRankId")
-                        .HasDatabaseName("ix_lobby_max_game_rank_id");
-
-                    b.HasIndex("MinGameRankId")
-                        .HasDatabaseName("ix_lobby_min_game_rank_id");
-
-                    b.HasIndex("OwnerId")
-                        .HasDatabaseName("ix_lobby_owner_id");
-
                     b.ToTable("lobby", (string)null);
-                });
-
-            modelBuilder.Entity("NoobGGApp.Domain.Entities.LobbyEventHistory", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("created_by_user_id");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_on");
-
-                    b.Property<int>("EventType")
-                        .HasColumnType("integer")
-                        .HasColumnName("event_type");
-
-                    b.Property<long>("LobbyId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("lobby_id");
-
-                    b.Property<string>("ModifiedByUserId")
-                        .HasColumnType("text")
-                        .HasColumnName("modified_by_user_id");
-
-                    b.Property<DateTimeOffset?>("ModifiedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("modified_on");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("text")
-                        .HasColumnName("note");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("user_id");
-
-                    b.HasKey("Id")
-                        .HasName("pk_lobby_event_history");
-
-                    b.HasIndex("LobbyId")
-                        .HasDatabaseName("ix_lobby_event_history_lobby_id");
-
-                    b.HasIndex("UserId")
-                        .HasDatabaseName("ix_lobby_event_history_user_id");
-
-                    b.ToTable("lobby_event_history", (string)null);
-                });
-
-            modelBuilder.Entity("NoobGGApp.Domain.Entities.LobbyLanguage", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("created_by_user_id");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_on");
-
-                    b.Property<long>("LanguageId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("language_id");
-
-                    b.Property<long>("LobbyId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("lobby_id");
-
-                    b.Property<string>("ModifiedByUserId")
-                        .HasColumnType("text")
-                        .HasColumnName("modified_by_user_id");
-
-                    b.Property<DateTimeOffset?>("ModifiedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("modified_on");
-
-                    b.HasKey("Id")
-                        .HasName("pk_lobby_language");
-
-                    b.HasIndex("LanguageId")
-                        .HasDatabaseName("ix_lobby_language_language_id");
-
-                    b.HasIndex("LobbyId")
-                        .HasDatabaseName("ix_lobby_language_lobby_id");
-
-                    b.ToTable("lobby_language", (string)null);
-                });
-
-            modelBuilder.Entity("NoobGGApp.Domain.Entities.LobbyMessage", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("content");
-
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("created_by_user_id");
-
-                    b.Property<DateTimeOffset>("CreatedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("created_on");
-
-                    b.Property<long>("LobbyId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("lobby_id");
-
-                    b.Property<string>("ModifiedByUserId")
-                        .HasColumnType("text")
-                        .HasColumnName("modified_by_user_id");
-
-                    b.Property<DateTimeOffset?>("ModifiedOn")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("modified_on");
-
-                    b.Property<long>("SenderId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("sender_id");
-
-                    b.HasKey("Id")
-                        .HasName("pk_lobby_message");
-
-                    b.HasIndex("LobbyId")
-                        .HasDatabaseName("ix_lobby_message_lobby_id");
-
-                    b.HasIndex("SenderId")
-                        .HasDatabaseName("ix_lobby_message_sender_id");
-
-                    b.ToTable("lobby_message", (string)null);
                 });
 
             modelBuilder.Entity("NoobGGApp.Domain.Identity.ApplicationRole", b =>
@@ -661,6 +298,15 @@ namespace NoobGGApp.Infrastructure.Persistence.EntityFramework.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("access_failed_count");
 
+                    b.Property<string>("BannerUrl")
+                        .HasColumnType("text")
+                        .HasColumnName("banner_url");
+
+                    b.Property<string>("Bio")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("bio");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("text")
@@ -685,11 +331,21 @@ namespace NoobGGApp.Infrastructure.Persistence.EntityFramework.Migrations
                         .HasColumnType("boolean")
                         .HasColumnName("email_confirmed");
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
-                        .HasColumnName("full_name");
+                        .HasColumnName("first_name");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasColumnName("last_name");
+
+                    b.Property<DateTimeOffset>("LastOnline")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("last_online");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean")
@@ -730,6 +386,10 @@ namespace NoobGGApp.Infrastructure.Persistence.EntityFramework.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("boolean")
                         .HasColumnName("phone_number_confirmed");
+
+                    b.Property<string>("ProfilePictureUrl")
+                        .HasColumnType("text")
+                        .HasColumnName("profile_picture_url");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text")
@@ -867,7 +527,7 @@ namespace NoobGGApp.Infrastructure.Persistence.EntityFramework.Migrations
 
             modelBuilder.Entity("NoobGGApp.Domain.Entities.Customer", b =>
                 {
-                    b.OwnsOne("NoobGGApp.Domain.ValueObjects.Address", "Address", b1 =>
+                    b.OwnsOne("NoobGGApp.Domain.ValueObjects.Adress", "Address", b1 =>
                         {
                             b1.Property<long>("CustomerId")
                                 .HasColumnType("bigint")
@@ -951,30 +611,6 @@ namespace NoobGGApp.Infrastructure.Persistence.EntityFramework.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("NoobGGApp.Domain.Entities.GameMode", b =>
-                {
-                    b.HasOne("NoobGGApp.Domain.Entities.Game", "Game")
-                        .WithMany("GameModes")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_game_mode_games_game_id");
-
-                    b.Navigation("Game");
-                });
-
-            modelBuilder.Entity("NoobGGApp.Domain.Entities.GameRank", b =>
-                {
-                    b.HasOne("NoobGGApp.Domain.Entities.Game", "Game")
-                        .WithMany("GameRanks")
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_game_rank_games_game_id");
-
-                    b.Navigation("Game");
-                });
-
             modelBuilder.Entity("NoobGGApp.Domain.Entities.GameRegion", b =>
                 {
                     b.HasOne("NoobGGApp.Domain.Entities.Game", "Game")
@@ -985,129 +621,6 @@ namespace NoobGGApp.Infrastructure.Persistence.EntityFramework.Migrations
                         .HasConstraintName("fk_game_regions_games_game_id");
 
                     b.Navigation("Game");
-                });
-
-            modelBuilder.Entity("NoobGGApp.Domain.Entities.Lobby", b =>
-                {
-                    b.HasOne("NoobGGApp.Domain.Identity.ApplicationUser", "Creator")
-                        .WithMany()
-                        .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_lobby_application_users_creator_id");
-
-                    b.HasOne("NoobGGApp.Domain.Entities.Game", "Game")
-                        .WithMany()
-                        .HasForeignKey("GameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_lobby_games_game_id");
-
-                    b.HasOne("NoobGGApp.Domain.Entities.GameMode", "GameMode")
-                        .WithMany()
-                        .HasForeignKey("GameModeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_lobby_game_mode_game_mode_id");
-
-                    b.HasOne("NoobGGApp.Domain.Entities.GameRegion", "GameRegion")
-                        .WithMany()
-                        .HasForeignKey("GameRegionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_lobby_game_regions_game_region_id");
-
-                    b.HasOne("NoobGGApp.Domain.Entities.GameRank", "MaxGameRank")
-                        .WithMany()
-                        .HasForeignKey("MaxGameRankId")
-                        .HasConstraintName("fk_lobby_game_rank_max_game_rank_id");
-
-                    b.HasOne("NoobGGApp.Domain.Entities.GameRank", "MinGameRank")
-                        .WithMany()
-                        .HasForeignKey("MinGameRankId")
-                        .HasConstraintName("fk_lobby_game_rank_min_game_rank_id");
-
-                    b.HasOne("NoobGGApp.Domain.Identity.ApplicationUser", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_lobby_application_users_owner_id");
-
-                    b.Navigation("Creator");
-
-                    b.Navigation("Game");
-
-                    b.Navigation("GameMode");
-
-                    b.Navigation("GameRegion");
-
-                    b.Navigation("MaxGameRank");
-
-                    b.Navigation("MinGameRank");
-
-                    b.Navigation("Owner");
-                });
-
-            modelBuilder.Entity("NoobGGApp.Domain.Entities.LobbyEventHistory", b =>
-                {
-                    b.HasOne("NoobGGApp.Domain.Entities.Lobby", "Lobby")
-                        .WithMany("LobbyEventHistories")
-                        .HasForeignKey("LobbyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_lobby_event_history_lobby_lobby_id");
-
-                    b.HasOne("NoobGGApp.Domain.Identity.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("fk_lobby_event_history_application_users_user_id");
-
-                    b.Navigation("Lobby");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("NoobGGApp.Domain.Entities.LobbyLanguage", b =>
-                {
-                    b.HasOne("NoobGGApp.Domain.Entities.Language", "Language")
-                        .WithMany("LobbyLanguages")
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_lobby_language_language_language_id");
-
-                    b.HasOne("NoobGGApp.Domain.Entities.Lobby", "Lobby")
-                        .WithMany("LobbyLanguages")
-                        .HasForeignKey("LobbyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_lobby_language_lobby_lobby_id");
-
-                    b.Navigation("Language");
-
-                    b.Navigation("Lobby");
-                });
-
-            modelBuilder.Entity("NoobGGApp.Domain.Entities.LobbyMessage", b =>
-                {
-                    b.HasOne("NoobGGApp.Domain.Entities.Lobby", "Lobby")
-                        .WithMany("LobbyMessages")
-                        .HasForeignKey("LobbyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_lobby_message_lobby_lobby_id");
-
-                    b.HasOne("NoobGGApp.Domain.Identity.ApplicationUser", "Sender")
-                        .WithMany()
-                        .HasForeignKey("SenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_lobby_message_application_users_sender_id");
-
-                    b.Navigation("Lobby");
-
-                    b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("NoobGGApp.Domain.Identity.ApplicationRoleClaim", b =>
@@ -1169,25 +682,7 @@ namespace NoobGGApp.Infrastructure.Persistence.EntityFramework.Migrations
 
             modelBuilder.Entity("NoobGGApp.Domain.Entities.Game", b =>
                 {
-                    b.Navigation("GameModes");
-
-                    b.Navigation("GameRanks");
-
                     b.Navigation("GameRegions");
-                });
-
-            modelBuilder.Entity("NoobGGApp.Domain.Entities.Language", b =>
-                {
-                    b.Navigation("LobbyLanguages");
-                });
-
-            modelBuilder.Entity("NoobGGApp.Domain.Entities.Lobby", b =>
-                {
-                    b.Navigation("LobbyEventHistories");
-
-                    b.Navigation("LobbyLanguages");
-
-                    b.Navigation("LobbyMessages");
                 });
 #pragma warning restore 612, 618
         }
