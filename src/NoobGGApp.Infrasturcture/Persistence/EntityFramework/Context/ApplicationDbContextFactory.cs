@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using NoobGGApp.Application.Common.Interfaces;
-using NoobGGApp.Infrastructure.Persistence.EntityFramework.Contexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;

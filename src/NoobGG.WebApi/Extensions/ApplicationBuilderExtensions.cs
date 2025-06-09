@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NoobGGApp.Infrastructure.Persistence.EntityFramework.Context;
-using NoobGGApp.Infrastructure.Persistence.EntityFramework.Contexts;
 
 namespace NoobGG.WebApi;
 
