@@ -1,0 +1,2 @@
+# Ignore local configuration files containing secrets
+src/NoobGG.WebApi/appsettings.json 
